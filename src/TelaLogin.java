@@ -1,3 +1,7 @@
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+
 public class TelaLogin extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(TelaLogin.class.getName());
@@ -23,8 +27,8 @@ public class TelaLogin extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
-        jPasswordField1 = new javax.swing.JPasswordField();
+        txtEmail = new javax.swing.JTextField();
+        txtSenha = new javax.swing.JPasswordField();
 
         jLabel2.setText("jLabel2");
 
@@ -44,11 +48,11 @@ public class TelaLogin extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel3.setText("Email");
 
-        jTextField2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jTextField2.setText("jTextField1");
+        txtEmail.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        txtEmail.addActionListener(this::txtEmailActionPerformed);
 
-        jPasswordField1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jPasswordField1.setText("jPasswordField1");
+        txtSenha.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        txtSenha.addActionListener(this::txtSenhaActionPerformed);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -56,19 +60,19 @@ public class TelaLogin extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, 356, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 356, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(29, 29, 29)
-                            .addComponent(jLabel1))
                         .addGroup(layout.createSequentialGroup()
                             .addGap(130, 130, 130)
                             .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGroup(layout.createSequentialGroup()
                             .addGap(29, 29, 29)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 356, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jLabel3)))))
+                                .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 356, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabel3)))
+                        .addGroup(layout.createSequentialGroup()
+                            .addGap(29, 29, 29)
+                            .addComponent(jLabel1))))
                 .addContainerGap(29, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -77,12 +81,12 @@ public class TelaLogin extends javax.swing.JFrame {
                 .addGap(27, 27, 27)
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 44, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txtSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 50, Short.MAX_VALUE)
                 .addComponent(jButton1)
                 .addGap(49, 49, 49))
         );
@@ -117,6 +121,14 @@ public class TelaLogin extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField1ActionPerformed
 
+    private void txtSenhaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSenhaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtSenhaActionPerformed
+
+    private void txtEmailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEmailActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtEmailActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -147,8 +159,8 @@ public class TelaLogin extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JPasswordField jPasswordField1;
     private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
+    private javax.swing.JTextField txtEmail;
+    private javax.swing.JPasswordField txtSenha;
     // End of variables declaration//GEN-END:variables
 }
