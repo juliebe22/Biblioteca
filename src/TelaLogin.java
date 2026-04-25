@@ -1,6 +1,7 @@
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import javax.swing.JOptionPane;
 
 public class TelaLogin extends javax.swing.JFrame {
     
@@ -108,12 +109,13 @@ public class TelaLogin extends javax.swing.JFrame {
           ResultSet rs = ps.executeQuery();
           
           if (rs.next()) {
-              System.out.println("Login OK!");
+              new Menu().setVisible(true);
+              this.dispose();
           } else {
-              System.out.println("Email ou senha incorretos");
+              JOptionPane.showMessageDialog(null, "Email ou senha incorretos");
           }
       } catch(Exception e) {
-          e.printStackTrace();
+          JOptionPane.showMessageDialog(null, "Erro: " + e.getMessage());
       }
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -163,8 +165,4 @@ public class TelaLogin extends javax.swing.JFrame {
     private javax.swing.JTextField txtEmail;
     private javax.swing.JPasswordField txtSenha;
     // End of variables declaration//GEN-END:variables
-if (rs.next()) {
-    new Menu().setVisible(true);
-    this.dispose();
-}
 }
