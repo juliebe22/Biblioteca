@@ -134,6 +134,10 @@ public class TelaCadastro extends javax.swing.JFrame {
           ps.executeUpdate();
           
           JOptionPane.showMessageDialog(null, "Cadastro realizado!");
+          
+          new TelaLogin().setVisible(true);
+          this.dispose();
+          
      } catch (Exception e) {
           JOptionPane.showMessageDialog(null, "Erro: " + e.getMessage());  
     }//GEN-LAST:event_btnCadastrarActionPerformed

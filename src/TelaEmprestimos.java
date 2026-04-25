@@ -35,7 +35,7 @@ public class TelaEmprestimos extends javax.swing.JFrame {
        
        String sql = "SELECT e.id, u.nome, l.titulo FROM emprestimos e " +
                     "INNER JOIN usuarios u ON e.usuario_id = u.id " +
-                    "INNER JOIN livros l ON e.livro_id = l.id" +
+                    "INNER JOIN livros l ON e.livro_id = l.id " +
                     "ORDER BY u.nome ASC";
        
        try (Connection conn = Conexao.conectar();
