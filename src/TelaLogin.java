@@ -163,4 +163,8 @@ public class TelaLogin extends javax.swing.JFrame {
     private javax.swing.JTextField txtEmail;
     private javax.swing.JPasswordField txtSenha;
     // End of variables declaration//GEN-END:variables
+if (rs.next()) {
+    new Menu().setVisible(true);
+    this.dispose();
+}
 }
