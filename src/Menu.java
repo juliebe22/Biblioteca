@@ -21,7 +21,6 @@ public class Menu extends javax.swing.JFrame {
         btnLivros = new javax.swing.JButton();
         btnEmprestimos = new javax.swing.JButton();
         btnUsuarios = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -37,34 +36,28 @@ public class Menu extends javax.swing.JFrame {
         btnUsuarios.setText("Usuários");
         btnUsuarios.addActionListener(this::btnUsuariosActionPerformed);
 
-        jButton4.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jButton4.setText("Listar empréstimos");
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(102, 102, 102)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(110, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnEmprestimos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnUsuarios, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnLivros, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(113, Short.MAX_VALUE))
+                .addGap(105, 105, 105))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(49, 49, 49)
+                .addGap(81, 81, 81)
                 .addComponent(btnLivros)
                 .addGap(18, 18, 18)
                 .addComponent(btnUsuarios)
                 .addGap(18, 18, 18)
                 .addComponent(btnEmprestimos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(18, 18, 18)
-                .addComponent(jButton4)
-                .addGap(69, 69, 69))
+                .addGap(87, 87, 87))
         );
 
         pack();
@@ -111,6 +104,5 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JButton btnEmprestimos;
     private javax.swing.JButton btnLivros;
     private javax.swing.JButton btnUsuarios;
-    private javax.swing.JButton jButton4;
     // End of variables declaration//GEN-END:variables
 }

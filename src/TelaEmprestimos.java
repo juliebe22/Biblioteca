@@ -1,12 +1,7 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
+import java.sql.Connection;
+import java.sql.ResultSet;
+import javax.swing.JOptionPane;
 
-/**
- *
- * @author light
- */
 public class TelaEmprestimos extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(TelaEmprestimos.class.getName());
@@ -16,8 +11,49 @@ public class TelaEmprestimos extends javax.swing.JFrame {
      */
     public TelaEmprestimos() {
         initComponents();
+        preencherCombos();
+        carregarTabelaEmprestimos();
     }
-
+    private void preencherCombos() {
+        try (Connection conn = Conexao.conectar()) {
+            ResultSet rsUsuarios = conn.createStatement().executeQuery("SELECT nome FROM usuarios");
+            comboBoxLeitor.removeAllItems();
+            while (rsUsuarios.next()) 
+                comboBoxLeitor.addItem(rsUsuarios.getString("nome"));
+            
+            ResultSet rsLivros = conn.createStatement().executeQuery("SELECT titulo FROM livros");
+            comboBoxLivro.removeAllItems();
+            while(rsLivros.next())
+                comboBoxLivro.addItem(rsLivros.getString("titulo"));
+           } catch (Exception e) {
+                  JOptionPane.showMessageDialog(null, "Erro: " + e.getMessage());   
+           }
+    }
+   private void carregarTabelaEmprestimos() {
+       javax.swing.table.DefaultTableModel model = (javax.swing.table.DefaultTableModel) tabelaEmprestimos.getModel();
+       model.setRowCount(0);
+       
+       String sql = "SELECT e.id, u.nome, l.titulo FROM emprestimos e " +
+                    "INNER JOIN usuarios u ON e.usuario_id = u.id " +
+                    "INNER JOIN livros l ON e.livro_id = l.id";
+       
+       try (Connection conn = Conexao.conectar();
+           java.sql.PreparedStatement ps = conn.prepareStatement(sql);
+           ResultSet rs = ps.executeQuery()) {
+           
+           while (rs.next()) {
+                model.addRow(new Object[]{
+                    rs.getInt("id"),
+                    rs.getString("nome"),
+                    rs.getString("titulo")
+                });
+            }
+       } catch (Exception e) {
+           JOptionPane.showMessageDialog(null, "Erro ao carregar tabela: " + e.getMessage()); 
+       }
+   }        
+            
+   
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -27,21 +63,119 @@ public class TelaEmprestimos extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        comboBoxLivro = new javax.swing.JComboBox<>();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        comboBoxLeitor = new javax.swing.JComboBox<>();
+        bntEmprestar = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tabelaEmprestimos = new javax.swing.JTable();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        comboBoxLivro.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        comboBoxLivro.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        comboBoxLivro.addActionListener(this::comboBoxLivroActionPerformed);
+
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel1.setText("Livro");
+
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel2.setText("Leitor");
+
+        comboBoxLeitor.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        comboBoxLeitor.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        comboBoxLeitor.addActionListener(this::comboBoxLeitorActionPerformed);
+
+        bntEmprestar.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        bntEmprestar.setText("Registrar Empréstimo");
+        bntEmprestar.addActionListener(this::bntEmprestarActionPerformed);
+
+        tabelaEmprestimos.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
+            },
+            new String [] {
+                "ID", "Nome do usuário", "Título do livro"
+            }
+        ));
+        jScrollPane1.setViewportView(tabelaEmprestimos);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(28, 28, 28)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(comboBoxLeitor, 0, 471, Short.MAX_VALUE)
+                            .addComponent(comboBoxLivro, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 540, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(bntEmprestar)
+                .addGap(169, 169, 169))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(32, 32, 32)
+                .addComponent(jLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(comboBoxLeitor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(31, 31, 31)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(comboBoxLivro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(bntEmprestar)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 403, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(28, 28, 28))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void comboBoxLivroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboBoxLivroActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_comboBoxLivroActionPerformed
+
+    private void bntEmprestarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bntEmprestarActionPerformed
+        String nomeLeitor = comboBoxLeitor.getSelectedItem().toString();
+        String tituloLivro = comboBoxLivro.getSelectedItem().toString();
+
+        String sql = "INSERT INTO emprestimos (usuario_id, livro_id, data_emprestimo) VALUES " +
+                     "((SELECT id FROM usuarios WHERE nome = ?), " +
+                     "(SELECT id FROM livros WHERE titulo = ?), CURRENT_DATE)";
+
+        try (Connection conn = Conexao.conectar();
+             java.sql.PreparedStatement ps = conn.prepareStatement(sql)) {
+            
+            ps.setString(1, nomeLeitor);
+            ps.setString(2, tituloLivro);
+            ps.executeUpdate();
+
+            JOptionPane.showMessageDialog(null, "Empréstimo registrado com sucesso!");
+            carregarTabelaEmprestimos();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Erro ao registrar empréstimo: " + e.getMessage());
+        }
+    }//GEN-LAST:event_bntEmprestarActionPerformed
+
+    private void comboBoxLeitorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboBoxLeitorActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_comboBoxLeitorActionPerformed
 
     /**
      * @param args the command line arguments
@@ -69,5 +203,12 @@ public class TelaEmprestimos extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton bntEmprestar;
+    private javax.swing.JComboBox<String> comboBoxLeitor;
+    private javax.swing.JComboBox<String> comboBoxLivro;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable tabelaEmprestimos;
     // End of variables declaration//GEN-END:variables
 }
