@@ -21,6 +21,7 @@ public class Menu extends javax.swing.JFrame {
         btnLivros = new javax.swing.JButton();
         btnEmprestimos = new javax.swing.JButton();
         btnUsuarios = new javax.swing.JButton();
+        btnListarUsuarios = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -33,31 +34,38 @@ public class Menu extends javax.swing.JFrame {
         btnEmprestimos.addActionListener(this::btnEmprestimosActionPerformed);
 
         btnUsuarios.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        btnUsuarios.setText("Usuários");
+        btnUsuarios.setText("Cadastrar Usuários");
         btnUsuarios.addActionListener(this::btnUsuariosActionPerformed);
+
+        btnListarUsuarios.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        btnListarUsuarios.setText("Listar Usuários");
+        btnListarUsuarios.addActionListener(this::btnListarUsuariosActionPerformed);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(110, Short.MAX_VALUE)
+                .addContainerGap(112, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(btnEmprestimos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnUsuarios, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnLivros, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(105, 105, 105))
+                    .addComponent(btnLivros, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnListarUsuarios, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(103, 103, 103))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(81, 81, 81)
+                .addGap(41, 41, 41)
                 .addComponent(btnLivros)
                 .addGap(18, 18, 18)
                 .addComponent(btnUsuarios)
                 .addGap(18, 18, 18)
                 .addComponent(btnEmprestimos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(87, 87, 87))
+                .addGap(26, 26, 26)
+                .addComponent(btnListarUsuarios, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(69, 69, 69))
         );
 
         pack();
@@ -74,6 +82,11 @@ public class Menu extends javax.swing.JFrame {
     private void btnEmprestimosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEmprestimosActionPerformed
         new TelaEmprestimos().setVisible(true);
     }//GEN-LAST:event_btnEmprestimosActionPerformed
+
+    private void btnListarUsuariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListarUsuariosActionPerformed
+        TelaListaUsuarios lista = new TelaListaUsuarios();
+        lista.setVisible(true);
+    }//GEN-LAST:event_btnListarUsuariosActionPerformed
 
     /**
      * @param args the command line arguments
@@ -102,6 +115,7 @@ public class Menu extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnEmprestimos;
+    private javax.swing.JButton btnListarUsuarios;
     private javax.swing.JButton btnLivros;
     private javax.swing.JButton btnUsuarios;
     // End of variables declaration//GEN-END:variables
